@@ -1,0 +1,58 @@
+POST http://localhost:3000/api/usuarios/registro
+Content-Type: application/json
+
+{
+  "nombre": "Usuario",
+  "apellidos": "De Prueba",
+  "email": "usuario@test.com",
+  "contrasena": "123456",
+  "telefono": "12345678",
+  "tipo_usuario": "paciente"
+}
+
+###
+POST http://localhost:3000/api/usuarios/login
+Content-Type: application/json
+
+{
+  "email": "usuario@test.com",
+  "contrasena": "123456"
+}
+
+###
+GET http://localhost:3000/api/usuarios/perfil
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOGE1OTlkLTlkMDEtNDliOS05MmZhLTZhZGUwZWE4MmFlYyIsImVtYWlsIjoidXN1YXJpb0B0ZXN0LmNvbSIsInRpcG9fdXN1YXJpbyI6InBhY2llbnRlIiwiaWF0IjoxNzQ3NTg3NzQzLCJleHAiOjE3NDc2NzQxNDN9.M88zB6qnXX8dH88uPlasuW2YxOEegfYPZFhOoLFg2Ac
+
+###Obtener perfil (requiere autenticación)
+
+GET http://localhost:3000/api/usuarios/perfil
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOGE1OTlkLTlkMDEtNDliOS05MmZhLTZhZGUwZWE4MmFlYyIsImVtYWlsIjoidXN1YXJpb0B0ZXN0LmNvbSIsInRpcG9fdXN1YXJpbyI6InBhY2llbnRlIiwiaWF0IjoxNzQ3NTg3NzQzLCJleHAiOjE3NDc2NzQxNDN9.M88zB6qnXX8dH88uPlasuW2YxOEegfYPZFhOoLFg2Ac
+
+###Para probar la integración con OpenAI:
+
+POST http://localhost:3000/api/chat
+Content-Type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOGE1OTlkLTlkMDEtNDliOS05MmZhLTZhZGUwZWE4MmFlYyIsImVtYWlsIjoidXN1YXJpb0B0ZXN0LmNvbSIsInRpcG9fdXN1YXJpbyI6InBhY2llbnRlIiwiaWF0IjoxNzQ3NTg3NzQzLCJleHAiOjE3NDc2NzQxNDN9.M88zB6qnXX8dH88uPlasuW2YxOEegfYPZFhOoLFg2Ac
+
+{
+  "mensaje": "Tengo dolor de cabeza y fiebre, ¿qué podría ser?"
+}
+
+
+###
+POST http://localhost:3000/api/chat
+Content-Type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOGE1OTlkLTlkMDEtNDliOS05MmZhLTZhZGUwZWE4MmFlYyIsImVtYWlsIjoidXN1YXJpb0B0ZXN0LmNvbSIsInRpcG9fdXN1YXJpbyI6InBhY2llbnRlIiwiaWF0IjoxNzQ3NTg3NzQzLCJleHAiOjE3NDc2NzQxNDN9.M88zB6qnXX8dH88uPlasuW2YxOEegfYPZFhOoLFg2Ac
+
+{
+  "mensaje": "Tengo dolor de cabeza y fiebre, ¿qué podría ser?"
+}
+
+###
+POST http://localhost:3000/api/chat/a5e706e3-2bba-470e-8140-f2aa0e849c7e/mensaje
+Content-Type: application/json
+Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOGE1OTlkLTlkMDEtNDliOS05MmZhLTZhZGUwZWE4MmFlYyIsImVtYWlsIjoidXN1YXJpb0B0ZXN0LmNvbSIsInRpcG9fdXN1YXJpbyI6InBhY2llbnRlIiwiaWF0IjoxNzQ3NTg3NzQzLCJleHAiOjE3NDc2NzQxNDN9.M88zB6qnXX8dH88uPlasuW2YxOEegfYPZFhOoLFg2Ac
+
+{
+  "mensaje": "Tengo dolor de cabeza y fiebre, ¿qué podría ser?"
+}
