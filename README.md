@@ -215,3 +215,101 @@ Se requiere conexión a internet para utilizar todas las funcionalidades
 13. CONCLUSIONES
 
 Esta aplicación de salud con chatbot de IA tiene el potencial de mejorar el acceso inicial a la atención médica, facilitando diagnósticos preliminares y la gestión de citas. Aunque es una solución simple, su implementación ayudará a optimizar el tiempo tanto de pacientes como de profesionales médicos.
+
+
+
+
+### Documentación del Backend: Sistema de Salud con IA
+
+#### Descripción General
+El backend desarrollado es una aplicación de salud con integración de chatbot de IA, diseñada para facilitar la comunicación entre pacientes y médicos, gestionar citas médicas y proporcionar asistencia médica preliminar mediante inteligencia artificial.
+
+#### Arquitectura del Sistema
+##### Tecnologías Principales
+- Node.js con Express: Framework para el servidor web
+- MySQL con Sequelize: Base de datos relacional y ORM
+- Socket.IO: Comunicación en tiempo real
+- JWT: Autenticación de usuarios
+- OpenAI/LM Studio: Integración con modelos de IA para el chatbot médico
+
+##### Componentes Clave
+###### 1. Modelos de Datos
+El sistema utiliza una estructura de modelos relacionales que incluye:
+
+- Usuario: Modelo base para todos los usuarios del sistema
+- Paciente: Extiende Usuario con información específica del paciente
+- Doctor: Extiende Usuario con información específica del médico
+- HistorialMédico: Registros médicos de los pacientes
+- Cita: Gestión de citas entre pacientes y médicos
+- ChatIA: Conversaciones de pacientes con el asistente de IA
+- MensajeChat: Mensajes individuales dentro de una conversación con IA
+
+###### 2. Autenticación y Seguridad
+- Sistema de autenticación basado en JWT
+- Middleware para verificación de roles (paciente/doctor)
+- Protección de rutas según permisos de usuario
+- Almacenamiento seguro de contraseñas con bcrypt
+
+###### 3. API RESTful
+Endpoints organizados por funcionalidad:
+
+- /api/usuarios: Registro, login y gestión de perfiles
+- /api/pacientes: Operaciones específicas para pacientes
+- /api/doctores: Operaciones específicas para médicos
+- /api/citas: Gestión de citas médicas
+- /api/chat: Interacción con el chatbot de IA
+- /api/historial-medico: Gestión de historiales médicos
+
+###### 4. Integración con IA
+- Conexión con modelos de lenguaje (OpenAI/LM Studio)
+- Sistema de prompts médicos especializados
+- Análisis preliminar de síntomas
+- Generación de respuestas contextualizadas
+- Capacidad para generar títulos automáticos para conversaciones
+
+###### 5. Comunicación en Tiempo Real
+- Implementación de WebSockets con Socket.IO
+- Notificaciones instantáneas para:
+  - Actualizaciones de citas
+  - Nuevos mensajes en chats
+  - Alertas médicas
+
+#### Flujos Principales
+##### Registro y Autenticación
+1. El usuario se registra proporcionando datos básicos y tipo (paciente/doctor)
+2. El sistema valida los datos y crea el registro en la base de datos
+3. Para iniciar sesión, el usuario proporciona credenciales y recibe un token JWT
+4. El token se utiliza para autenticar todas las solicitudes posteriores
+
+##### Consulta con IA
+1. El paciente inicia una conversación con el asistente de IA
+2. El sistema crea un nuevo chat y almacena los mensajes
+3. Las consultas del paciente se procesan a través de la API de OpenAI/LM Studio
+4. El sistema aplica un prompt especializado en medicina para contextualizar las respuestas
+5. Las respuestas se envían al paciente y se almacenan en la base de datos
+
+##### Gestión de Citas
+1. El paciente solicita una cita con un doctor específico
+2. El sistema verifica la disponibilidad del doctor
+3. Se crea la cita y se notifica a ambas partes
+4. Las actualizaciones de estado de la cita se comunican en tiempo real
+
+#### Configuración y Despliegue
+##### Variables de Entorno
+El sistema utiliza un archivo .env para configurar:
+
+- Conexión a la base de datos
+- Claves secretas para JWT
+- Configuración de OpenAI/LM Studio
+- Puertos y URLs del servidor
+
+##### Inicialización
+```bash
+# Instalar dependencias
+npm install
+
+# Iniciar en desarrollo
+npm run dev
+
+# Iniciar en producción
+npm start
